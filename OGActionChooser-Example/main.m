@@ -1,13 +1,4 @@
-//
-//  main.m
-//  OGActionChooser-Example
-//
-//  Created by ich on 12.04.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
-
 #import "OGAppDelegate.h"
 
 int main(int argc, char *argv[])
