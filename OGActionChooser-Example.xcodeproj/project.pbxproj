@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		547739C11537132F00D24759 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C01537132F00D24759 /* UIKit.framework */; };
+		547739C31537132F00D24759 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C21537132F00D24759 /* Foundation.framework */; };
+		547739C51537132F00D24759 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C41537132F00D24759 /* CoreGraphics.framework */; };
+		547739CB1537132F00D24759 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 547739C91537132F00D24759 /* InfoPlist.strings */; };
+		547739CD1537132F00D24759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 547739CC1537132F00D24759 /* main.m */; };
+		547739D11537132F00D24759 /* OGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547739D01537132F00D24759 /* OGAppDelegate.m */; };
+		547739D41537132F00D24759 /* OGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 547739D31537132F00D24759 /* OGViewController.m */; };
+		547739D71537132F00D24759 /* OGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 547739D51537132F00D24759 /* OGViewController_iPhone.xib */; };
+		547739DA1537132F00D24759 /* OGViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 547739D81537132F00D24759 /* OGViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		547739BC1537132F00D24759 /* OGActionChooser-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OGActionChooser-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		547739C01537132F00D24759 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		547739C21537132F00D24759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		547739C41537132F00D24759 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		547739C81537132F00D24759 /* OGActionChooser-Example-Info.plist */ = {isa = PBXFileReference; path = "OGActionChooser-Example-Info.plist"; sourceTree = "<group>"; };
+		547739CA1537132F00D24759 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		547739CC1537132F00D24759 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		547739CE1537132F00D24759 /* OGActionChooser-Example-Prefix.pch */ = {isa = PBXFileReference; path = "OGActionChooser-Example-Prefix.pch"; sourceTree = "<group>"; };
+		547739CF1537132F00D24759 /* OGAppDelegate.h */ = {isa = PBXFileReference; path = OGAppDelegate.h; sourceTree = "<group>"; };
+		547739D01537132F00D24759 /* OGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAppDelegate.m; sourceTree = "<group>"; };
+		547739D21537132F00D24759 /* OGViewController.h */ = {isa = PBXFileReference; path = OGViewController.h; sourceTree = "<group>"; };
+		547739D31537132F00D24759 /* OGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGViewController.m; sourceTree = "<group>"; };
+		547739D61537132F00D24759 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OGViewController_iPhone.xib; sourceTree = "<group>"; };
+		547739D91537132F00D24759 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OGViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		547739B91537132F00D24759 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547739C11537132F00D24759 /* UIKit.framework in Frameworks */,
+				547739C31537132F00D24759 /* Foundation.framework in Frameworks */,
+				547739C51537132F00D24759 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		547739B11537132F00D24759 = {
+			isa = PBXGroup;
+			children = (
+				547739C61537132F00D24759 /* OGActionChooser-Example */,
+				547739BF1537132F00D24759 /* Frameworks */,
+				547739BD1537132F00D24759 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		547739BD1537132F00D24759 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				547739BC1537132F00D24759 /* OGActionChooser-Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		547739BF1537132F00D24759 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				547739C01537132F00D24759 /* UIKit.framework */,
+				547739C21537132F00D24759 /* Foundation.framework */,
+				547739C41537132F00D24759 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		547739C61537132F00D24759 /* OGActionChooser-Example */ = {
+			isa = PBXGroup;
+			children = (
+				547739CF1537132F00D24759 /* OGAppDelegate.h */,
+				547739D01537132F00D24759 /* OGAppDelegate.m */,
+				547739D21537132F00D24759 /* OGViewController.h */,
+				547739D31537132F00D24759 /* OGViewController.m */,
+				547739D51537132F00D24759 /* OGViewController_iPhone.xib */,
+				547739D81537132F00D24759 /* OGViewController_iPad.xib */,
+				547739C71537132F00D24759 /* Supporting Files */,
+			);
+			path = "OGActionChooser-Example";
+			sourceTree = "<group>";
+		};
+		547739C71537132F00D24759 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				547739C81537132F00D24759 /* OGActionChooser-Example-Info.plist */,
+				547739C91537132F00D24759 /* InfoPlist.strings */,
+				547739CC1537132F00D24759 /* main.m */,
+				547739CE1537132F00D24759 /* OGActionChooser-Example-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		547739BB1537132F00D24759 /* OGActionChooser-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 547739DD1537132F00D24759 /* Build configuration list for PBXNativeTarget "OGActionChooser-Example" */;
+			buildPhases = (
+				547739B81537132F00D24759 /* Sources */,
+				547739B91537132F00D24759 /* Frameworks */,
+				547739BA1537132F00D24759 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OGActionChooser-Example";
+			productName = "OGActionChooser-Example";
+			productReference = 547739BC1537132F00D24759 /* OGActionChooser-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		547739B31537132F00D24759 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = OG;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 547739B61537132F00D24759 /* Build configuration list for PBXProject "OGActionChooser-Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 547739B11537132F00D24759;
+			productRefGroup = 547739BD1537132F00D24759 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				547739BB1537132F00D24759 /* OGActionChooser-Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		547739BA1537132F00D24759 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547739CB1537132F00D24759 /* InfoPlist.strings in Resources */,
+				547739D71537132F00D24759 /* OGViewController_iPhone.xib in Resources */,
+				547739DA1537132F00D24759 /* OGViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		547739B81537132F00D24759 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547739CD1537132F00D24759 /* main.m in Sources */,
+				547739D11537132F00D24759 /* OGAppDelegate.m in Sources */,
+				547739D41537132F00D24759 /* OGViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		547739C91537132F00D24759 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				547739CA1537132F00D24759 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		547739D51537132F00D24759 /* OGViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				547739D61537132F00D24759 /* en */,
+			);
+			name = OGViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		547739D81537132F00D24759 /* OGViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				547739D91537132F00D24759 /* en */,
+			);
+			name = OGViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		547739DB1537132F00D24759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		547739DC1537132F00D24759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		547739DE1537132F00D24759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OGActionChooser-Example/OGActionChooser-Example-Prefix.pch";
+				INFOPLIST_FILE = "OGActionChooser-Example/OGActionChooser-Example-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		547739DF1537132F00D24759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OGActionChooser-Example/OGActionChooser-Example-Prefix.pch";
+				INFOPLIST_FILE = "OGActionChooser-Example/OGActionChooser-Example-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		547739B61537132F00D24759 /* Build configuration list for PBXProject "OGActionChooser-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				547739DB1537132F00D24759 /* Debug */,
+				547739DC1537132F00D24759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		547739DD1537132F00D24759 /* Build configuration list for PBXNativeTarget "OGActionChooser-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				547739DE1537132F00D24759 /* Debug */,
+				547739DF1537132F00D24759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 547739B31537132F00D24759 /* Project object */;
+}
