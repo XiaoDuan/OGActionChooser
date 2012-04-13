@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
-#import "OGAppDelegate.h"
+#import "SampleController.h"
 
 int main(int argc, char *argv[])
 {
 	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([OGAppDelegate class]));
+	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([SampleController class]));
 	}
 }

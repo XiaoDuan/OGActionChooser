@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5464AEFC15389BFB002C479B /* SampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5464AEFB15389BFB002C479B /* SampleController.m */; };
 		547739C11537132F00D24759 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C01537132F00D24759 /* UIKit.framework */; };
 		547739C31537132F00D24759 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C21537132F00D24759 /* Foundation.framework */; };
 		547739C51537132F00D24759 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547739C41537132F00D24759 /* CoreGraphics.framework */; };
 		547739CD1537132F00D24759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 547739CC1537132F00D24759 /* main.m */; };
-		547739D11537132F00D24759 /* OGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547739D01537132F00D24759 /* OGAppDelegate.m */; };
 		549B9FD5153714F200577F04 /* OGActionChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 549B9FD4153714F200577F04 /* OGActionChooser.m */; };
 		549B9FD715371CD100577F04 /* actionChooser_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 549B9FD615371CD100577F04 /* actionChooser_Button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5464AEFA15389BFB002C479B /* SampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleController.h; sourceTree = "<group>"; };
+		5464AEFB15389BFB002C479B /* SampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleController.m; sourceTree = "<group>"; };
 		547739BC1537132F00D24759 /* OGActionChooser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGActionChooser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		547739C01537132F00D24759 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		547739C21537132F00D24759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -24,8 +26,6 @@
 		547739C81537132F00D24759 /* OGActionChooser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OGActionChooser-Info.plist"; sourceTree = "<group>"; };
 		547739CC1537132F00D24759 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		547739CE1537132F00D24759 /* OGActionChooser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGActionChooser-Prefix.pch"; sourceTree = "<group>"; };
-		547739CF1537132F00D24759 /* OGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAppDelegate.h; sourceTree = "<group>"; };
-		547739D01537132F00D24759 /* OGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAppDelegate.m; sourceTree = "<group>"; };
 		549B9FD3153714F200577F04 /* OGActionChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGActionChooser.h; sourceTree = "<group>"; };
 		549B9FD4153714F200577F04 /* OGActionChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGActionChooser.m; sourceTree = "<group>"; };
 		549B9FD615371CD100577F04 /* actionChooser_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actionChooser_Button.png; sourceTree = "<group>"; };
@@ -77,8 +77,8 @@
 			children = (
 				549B9FD3153714F200577F04 /* OGActionChooser.h */,
 				549B9FD4153714F200577F04 /* OGActionChooser.m */,
-				547739CF1537132F00D24759 /* OGAppDelegate.h */,
-				547739D01537132F00D24759 /* OGAppDelegate.m */,
+				5464AEFA15389BFB002C479B /* SampleController.h */,
+				5464AEFB15389BFB002C479B /* SampleController.m */,
 				549B9FD615371CD100577F04 /* actionChooser_Button.png */,
 				547739C71537132F00D24759 /* Supporting Files */,
 			);
@@ -159,8 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				547739CD1537132F00D24759 /* main.m in Sources */,
-				547739D11537132F00D24759 /* OGAppDelegate.m in Sources */,
 				549B9FD5153714F200577F04 /* OGActionChooser.m in Sources */,
+				5464AEFC15389BFB002C479B /* SampleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

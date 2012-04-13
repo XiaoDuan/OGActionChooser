@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2011 Oleg Geier
+//  Copyright (c) 2012 Oleg Geier
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -19,33 +19,42 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "OGViewController.h"
+#import "SampleController.h"
 #import "OGActionChooser.h"
 
-@interface OGViewController ()<OGActionChooserDelegate, UIApplicationDelegate>
-{
-    UIWindow *_window;
-}
-@end
+@interface SampleController ()<OGActionChooserDelegate, UIApplicationDelegate> {
+	UIWindow *_window;
+} @end
 
-@implementation OGViewController
+@implementation SampleController
 
-- (void)dealloc
-{
+- (void)dealloc {
 	[_window release];
-    [super dealloc];
+	[super dealloc];
 }
 
 -(void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	_window.rootViewController = self;
-    [_window makeKeyAndVisible];
+	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[_window addSubview:self.view];
+	[_window makeKeyAndVisible];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{ return YES; }
+
+- (void)viewDidLoad
 {
-    return YES;
+	[super viewDidLoad];
+	
+	self.view.backgroundColor = [UIColor whiteColor];
+	
+	// Test Button
+	UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[btn setTitle: @"show OGActionChooser" forState:UIControlStateNormal];
+	[btn setFrame: CGRectMake(40, 80, 240, 50)];
+	[btn addTarget:self action:@selector(showActionSheet:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:btn];
 }
 
 
@@ -55,7 +64,7 @@
 // |
 //  ---------------------------------------------------------------
 
-- (IBAction)showActionSheet:(UIButton*)sender
+- (void)showActionSheet:(UIButton*)sender
 {
 	OGActionChooser *acSheet = [OGActionChooser actionChooserWithDelegate:self];
 	acSheet.title = @"Chooser title";
@@ -110,6 +119,4 @@
 	NSLog(@"cancel button clicked or dismissed programatically");
 }
 
-- (IBAction)bla:(id)sender {
-}
 @end

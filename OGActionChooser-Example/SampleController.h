@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2011 Oleg Geier
+//  Copyright (c) 2012 Oleg Geier
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -21,8 +21,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OGViewController : UIViewController
-
-- (IBAction)showActionSheet:(UIButton*)sender;
-
+@interface SampleController : UIViewController
 @end
