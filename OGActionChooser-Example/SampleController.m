@@ -19,10 +19,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "OGAppDelegate.h"
+#import "OGViewController.h"
+#import "OGActionChooser.h"
 
-@implementation OGAppDelegate
-@synthesize window = _window;
+@interface OGViewController ()<OGActionChooserDelegate, UIApplicationDelegate>
+{
+    UIWindow *_window;
+}
+@end
+
+@implementation OGViewController
 
 - (void)dealloc
 {
@@ -30,26 +36,18 @@
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+-(void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	// Test Button
-	UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btn.frame = CGRectMake(50, 100, 200, 50);
-	[btn setTitle:@"show it to me" forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(showActionSheet:) forControlEvents:UIControlEventTouchUpInside];
-	
-	// usual stuff
-    self.window = [[[UIWindow alloc] initWithFrame:
-					[[UIScreen mainScreen] bounds]] autorelease];
-	UIView *theView = [[UIView alloc]initWithFrame:self.window.frame];
-	theView.backgroundColor = [UIColor whiteColor];
-	[theView addSubview:btn];
-	[self.window addSubview:theView];
-	[theView release];
-	
-    [self.window makeKeyAndVisible];
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	_window.rootViewController = self;
+    [_window makeKeyAndVisible];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
     return YES;
 }
+
 
 //  ---------------------------------------------------------------
 // |
@@ -57,7 +55,7 @@
 // |
 //  ---------------------------------------------------------------
 
-- (void)showActionSheet:(UIButton*)sender
+- (IBAction)showActionSheet:(UIButton*)sender
 {
 	OGActionChooser *acSheet = [OGActionChooser actionChooserWithDelegate:self];
 	acSheet.title = @"Chooser title";
@@ -112,4 +110,6 @@
 	NSLog(@"cancel button clicked or dismissed programatically");
 }
 
+- (IBAction)bla:(id)sender {
+}
 @end

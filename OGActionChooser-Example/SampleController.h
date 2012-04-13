@@ -20,8 +20,9 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "OGActionChooser.h"
 
-@interface OGAppDelegate : UIResponder <UIApplicationDelegate, OGActionChooserDelegate>
-@property (strong, nonatomic) UIWindow *window;
+@interface OGViewController : UIViewController
+
+- (IBAction)showActionSheet:(UIButton*)sender;
+
 @end
