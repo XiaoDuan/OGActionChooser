@@ -21,9 +21,9 @@
 		547739C01537132F00D24759 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		547739C21537132F00D24759 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		547739C41537132F00D24759 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		547739C81537132F00D24759 /* OGActionChooser-Info.plist */ = {isa = PBXFileReference; path = "OGActionChooser-Info.plist"; sourceTree = "<group>"; };
+		547739C81537132F00D24759 /* OGActionChooser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OGActionChooser-Info.plist"; sourceTree = "<group>"; };
 		547739CC1537132F00D24759 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		547739CE1537132F00D24759 /* OGActionChooser-Prefix.pch */ = {isa = PBXFileReference; path = "OGActionChooser-Prefix.pch"; sourceTree = "<group>"; };
+		547739CE1537132F00D24759 /* OGActionChooser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGActionChooser-Prefix.pch"; sourceTree = "<group>"; };
 		547739CF1537132F00D24759 /* OGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAppDelegate.h; sourceTree = "<group>"; };
 		547739D01537132F00D24759 /* OGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAppDelegate.m; sourceTree = "<group>"; };
 		549B9FD3153714F200577F04 /* OGActionChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGActionChooser.h; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -204,7 +204,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

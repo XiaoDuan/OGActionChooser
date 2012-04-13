@@ -23,12 +23,10 @@
 
 @implementation OGAppDelegate
 @synthesize window = _window;
-@synthesize acSheet;
 
 - (void)dealloc
 {
 	[_window release];
-	[acSheet release];
     [super dealloc];
 }
 
@@ -44,6 +42,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:
 					[[UIScreen mainScreen] bounds]] autorelease];
 	UIView *theView = [[UIView alloc]initWithFrame:self.window.frame];
+	theView.backgroundColor = [UIColor whiteColor];
 	[theView addSubview:btn];
 	[self.window addSubview:theView];
 	[theView release];
@@ -60,14 +59,15 @@
 
 - (void)showActionSheet:(UIButton*)sender
 {
-	acSheet = [OGActionChooser actionChooserWithDelegate:self];
+	OGActionChooser *acSheet = [OGActionChooser actionChooserWithDelegate:self];
+	acSheet.title = @"Chooser title";
 	
-	OGActionButton *fst = [OGActionButton buttonWithTitle:@"First Button" 
+	OGActionButton *fst = [OGActionButton buttonWithTitle:@"Toggle Shadow" 
 												imageName:@"actionChooser_Button" 
 												  enabled:YES];
-	OGActionButton *snd = [OGActionButton buttonWithTitle:@"Second" 
+	OGActionButton *snd = [OGActionButton buttonWithTitle:@"Change Color" 
 												imageName:@"actionChooser_Button" 
-												  enabled:NO];
+												  enabled:YES];
 	OGActionButton *trd = [OGActionButton buttonWithTitle:@"Next Page" 
 												imageName:@"actionChooser_Button.png" 
 												  enabled:YES];
@@ -75,7 +75,7 @@
 	// you can use 'buttonWithTitle:image:enabled:' for example if you like to draw it with Quartz. Or you want to copy from another image etc.
 	
 	[acSheet setButtonsWithArray:[NSArray arrayWithObjects:
-								  fst, @"", snd, // always three in a row
+								  fst, @"", snd, // always three in a row (currently)
 								  @"", @"", @"",
 								  trd, nil]]; // next page
 	[acSheet presentInView: sender.superview];
@@ -87,17 +87,27 @@
 // |
 //  ---------------------------------------------------------------
 
-- (void)actionChooserButtonPressedWithIndex:(NSInteger)index
+- (void)actionChooser:(OGActionChooser *)ac buttonPressedWithIndex:(NSInteger)index
 {
 	// you can create an array of buttons to identify them by index
-	NSLog(@"clicked button with index: %i", index);
-	if (index == 6) {
-		NSLog(@"first button on the second page clicked");
+	switch (index) {
+		case 0:
+			ac.shouldDrawShadow = !ac.shouldDrawShadow; break;
+		case 2:
+			ac.backgroundColor = [UIColor colorWithRed:rand()%255/255.0 
+												 green:rand()%255/255.0 
+												  blue:rand()%255/255.0 alpha:0.8f];
+			break;
+		case 6:
+			NSLog(@"first button on the second page clicked"); break;
+		default:
+			NSLog(@"clicked button with index: %i", index);
 	}
-	[acSheet dismiss]; // dismiss if you like to close it right afterwards
+	
+	//[ac dismiss]; // if you like to close it right afterwards
 }
 
-- (void)actionChooserFinished
+- (void)actionChooserFinished:(OGActionChooser *)ac
 {
 	NSLog(@"cancel button clicked or dismissed programatically");
 }

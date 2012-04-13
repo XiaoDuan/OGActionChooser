@@ -24,5 +24,4 @@
 
 @interface OGAppDelegate : UIResponder <UIApplicationDelegate, OGActionChooserDelegate>
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) OGActionChooser *acSheet;
 @end

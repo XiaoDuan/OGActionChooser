@@ -29,19 +29,23 @@
 + (id)buttonWithTitle:(NSString*)t imageName:(NSString*)n enabled:(BOOL)en;
 @end
 
+@protocol OGActionChooserDelegate; 
 
-
-@protocol OGActionChooserDelegate <NSObject>
-- (void)actionChooserButtonPressedWithIndex:(NSInteger)index;
-- (void)actionChooserFinished;
-@end
-
-
-@interface OGActionChooser : UIViewController <UIScrollViewDelegate> {}
+@interface OGActionChooser : UIView <UIScrollViewDelegate> {}
 @property (nonatomic, assign) id<OGActionChooserDelegate> delegate;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, retain) UIColor *backgroundColor; // r17 g25 b68 a0.8
+@property (nonatomic) BOOL shouldDrawShadow; // YES
 
 + (id)actionChooserWithDelegate:(id<OGActionChooserDelegate>)dlg;
 - (void)setButtonsWithArray:(NSArray*)buttons;
 - (void)presentInView:(UIView*)parentview;
 - (void)dismiss;
+@end
+
+@protocol OGActionChooserDelegate <NSObject>
+@required
+- (void)actionChooser:(OGActionChooser*)ac buttonPressedWithIndex:(NSInteger)index;
+@optional
+- (void)actionChooserFinished:(OGActionChooser*)ac;
 @end

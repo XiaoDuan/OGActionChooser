@@ -37,20 +37,29 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 	return aip;
 }
 
+
+//  ---------------------------------------------------------------
+// |
+// |  Interface declaration
+// |
+//  ---------------------------------------------------------------
+
 @interface OGCloseButton : UIButton {} @end
-@interface OGAlertSheetBackground : UIView {} @end
+
+@interface OGAlertSheetBackground : UIView
+ @property (nonatomic,retain) UIColor* fillColor;
+@end
 
 @interface OGActionChooserButton : UIButton {}
 - (id)initWithImage:(UIImage*)image andTitle:(NSString*)title;
 @end
 
 
-#pragma mark - Main Controller ###############################
-
 @interface OGActionChooser ()
-@property (nonatomic, retain) UILabel *lbl_Title;
+@property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UIScrollView *buttonScroll;
 @property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, retain) OGAlertSheetBackground *background;
 
 - (void)actionButtonTapped:(OGActionChooserButton*)sender;
 - (CGPoint)buttonCenterPoint:(ActionIndexPath)pos;
@@ -58,54 +67,73 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 @end
 
 
+
+
+// ################################################################
+// #
+// #
+// #  Main Controller (button scrolling, paging, clicking, etc.)
+// #
+// #
+// ################################################################
+
+#pragma mark - Main Controller
+
+
+
+
 @implementation OGActionChooser
-@synthesize delegate, lbl_Title, buttonScroll, pageControl;
+@synthesize delegate = _delegate, title = _title, backgroundColor = _backgroundColor, shouldDrawShadow = _shouldDrawShadow;
+@synthesize buttonScroll = _buttonScroll, pageControl = _pageControl, titleLabel = _titleLabel, background = _background;
 
 - (id)init {
-	self = [super init];
+	self = [super initWithFrame:CGRectMake(0,0,299,262)];
 	if (self) {
 		
-		self.view.frame = CGRectMake(0,0,299,262);
-		self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		self.opaque = NO;
 		
 		UIView *chooserView = [[UIView alloc]initWithFrame:CGRectMake(0,0,299,262)];
 		chooserView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
-										UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		
 		
-		OGAlertSheetBackground *backgroundImage = [[OGAlertSheetBackground alloc]initWithFrame:CGRectMake(0,7,299,255)];
-		backgroundImage.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		backgroundImage.backgroundColor = [UIColor clearColor];
-		[chooserView addSubview:backgroundImage];
-		[backgroundImage release];
+		self.background = [[OGAlertSheetBackground alloc]initWithFrame:CGRectMake(0,7,299,255)];
+		_background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		_background.backgroundColor = [UIColor clearColor];
+		[chooserView addSubview:_background];
+		[_background release];
 		
-		self.lbl_Title = [[UILabel alloc]initWithFrame:CGRectMake(24,12,252,22)];
-		lbl_Title.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		lbl_Title.font = [UIFont fontWithName:@"Helvetica" size:17.0f];
-		lbl_Title.textAlignment = UITextAlignmentCenter;
-		lbl_Title.lineBreakMode = UILineBreakModeTailTruncation;
-		lbl_Title.textColor = [UIColor whiteColor];
-		lbl_Title.backgroundColor = [UIColor clearColor];
-		[chooserView addSubview:lbl_Title];
-		[lbl_Title release];
+		// Title
+		self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(24,12,252,22)];
+		_titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		_titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0f];
+		_titleLabel.textAlignment = UITextAlignmentCenter;
+		_titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+		_titleLabel.textColor = [UIColor whiteColor];
+		_titleLabel.backgroundColor = [UIColor clearColor];
+		[chooserView addSubview:_titleLabel];
+		[_titleLabel release];
 		
+		// Scroll View
 		self.buttonScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(10,39,279,193)];
-		buttonScroll.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		buttonScroll.backgroundColor = [UIColor clearColor];
-		buttonScroll.pagingEnabled = YES;
-		buttonScroll.showsHorizontalScrollIndicator = NO;
-		buttonScroll.delegate = self;
-		[chooserView addSubview:buttonScroll];
-		[buttonScroll release];
+		_buttonScroll.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		_buttonScroll.backgroundColor = [UIColor clearColor];
+		_buttonScroll.pagingEnabled = YES;
+		_buttonScroll.showsHorizontalScrollIndicator = NO;
+		_buttonScroll.delegate = self;
+		[chooserView addSubview:_buttonScroll];
+		[_buttonScroll release];
 		
+		// Page Control
 		self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(20,224,260,36)];
-		pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-		[pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
-		pageControl.hidesForSinglePage = YES;
-		[chooserView addSubview:pageControl];
-		[pageControl release];
+		_pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+		[_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
+		_pageControl.hidesForSinglePage = YES;
+		[chooserView addSubview:_pageControl];
+		[_pageControl release];
 		
+		// Close Button
 		OGCloseButton *closeButton = [[OGCloseButton alloc]initWithFrame:CGRectMake(0,0,25,25)];
 		closeButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[closeButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
@@ -113,8 +141,11 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 		[closeButton release];
 		
 		
-		[self.view addSubview:chooserView];
+		[self addSubview:chooserView];
 		[chooserView release];
+		
+		self.shouldDrawShadow = YES;
+		
 	}
 	return self;
 }
@@ -128,23 +159,25 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 }
 
 - (void)dealloc {
-	[lbl_Title release];
-	[buttonScroll release];
-	[pageControl release];
+	[_titleLabel release];
+	[_buttonScroll release];
+	[_pageControl release];
+	[_title release];
+	[_background release];
 	[super dealloc];
 }
 
-#pragma mark -
+#pragma mark - Opening and Closing
 
 - (void)presentInView:(UIView*)parentview {
-	[self retain];
-	self.view.frame = parentview.bounds;
-	self.view.alpha = 0.0f;
-	[parentview addSubview:self.view];
+	self.frame = parentview.bounds;
+	self.alpha = 0.0f;
+	
+	[parentview addSubview:self];
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.15f];
-	self.view.alpha = 1.0f;
+	self.alpha = 1.0f;
 	[UIView commitAnimations];
 }
 
@@ -153,30 +186,41 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 	[UIView setAnimationDuration:0.3f];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(finishCloseAnimation)];
-	self.view.alpha = 0.0f;
+	self.alpha = 0.0f;
 	[UIView commitAnimations];
 }
 
-- (void)finishCloseAnimation {
-	[self.view removeFromSuperview];
-	
-	if ([delegate respondsToSelector:@selector(actionChooserFinished)])
-		[delegate actionChooserFinished];
-	
-	[self release];
+- (void)finishCloseAnimation {	
+	if ([_delegate respondsToSelector:@selector(actionChooserFinished:)])
+		[_delegate actionChooserFinished:self];
+	[self removeFromSuperview];
+}
+
+#pragma mark - Getter / Setter
+
+- (void)setTitle:(NSString *)aTitle { _titleLabel.text = aTitle; }
+
+- (NSString*)title { return _titleLabel.text; }
+
+- (UIColor *)backgroundColor { return _background.fillColor; }
+
+- (void)setBackgroundColor:(UIColor *)bg { _background.fillColor = bg; }
+
+-(void)setShouldDrawShadow:(BOOL)value
+{
+	if (_shouldDrawShadow != value) {
+		_shouldDrawShadow = value;
+		[self setNeedsDisplay];
+	}
 }
 
 #pragma mark - Custom Methods
-
-- (void)setTitle:(NSString *)title { lbl_Title.text = title; }
-
-- (NSString*)title { return lbl_Title.text; }
 
 - (void)actionButtonTapped:(OGActionChooserButton*)sender {
 	int tg = sender.tag;
 	ActionIndexPath indexPath = actionIndexPathMake(tg/100, (tg%100)/10, tg%10);
 	int arrayIndex = indexPath.page*(maxColumns*maxRows)+(maxColumns*indexPath.row)+indexPath.column;
-	[delegate actionChooserButtonPressedWithIndex:arrayIndex];
+	[_delegate actionChooser:self buttonPressedWithIndex:arrayIndex];
 }
 
 - (void)setButtonsWithArray:(NSArray*)buttons {
@@ -184,8 +228,8 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 	int numberOfPages = ceilf((float)numberOfButtons/(maxColumns*maxRows));
 	
 	
-	[buttonScroll setContentSize:CGSizeMake(buttonScroll.frame.size.width*numberOfPages, buttonScroll.frame.size.height)];
-	pageControl.numberOfPages = numberOfPages;
+	[_buttonScroll setContentSize:CGSizeMake(_buttonScroll.frame.size.width*numberOfPages, _buttonScroll.frame.size.height)];
+	_pageControl.numberOfPages = numberOfPages;
 	
 	int page=-1, column=-1, row=-1;
 	int i = 0;
@@ -207,7 +251,7 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 			gacb.enabled = actBtn.enabled;
 			gacb.tag = page*100 + column*10 + row;
 			gacb.alpha = 0.9f;
-			[buttonScroll addSubview:gacb];
+			[_buttonScroll addSubview:gacb];
 			[gacb release];
 		}
 		
@@ -217,7 +261,7 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 
 - (CGPoint)buttonCenterPoint:(ActionIndexPath)pos { // first = 0,0,0
 	// example: 10px + ((84+4)*column) + (84/2) + (scroll-width * page)
-	float xpos = ScrollViewEdgePadding + ((ActionButtonSizeX+ActionButtonPaddingX)*pos.column) + (ActionButtonSizeX/2) + buttonScroll.frame.size.width*pos.page;
+	float xpos = ScrollViewEdgePadding + ((ActionButtonSizeX+ActionButtonPaddingX)*pos.column) + (ActionButtonSizeX/2) + _buttonScroll.frame.size.width*pos.page;
 	// example: ((94+4)*row) + (94/2)
 	float ypos = ((ActionButtonSizeY+ActionButtonPaddingY)*pos.row) + (ActionButtonSizeY/2);
 	
@@ -227,26 +271,57 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 #pragma mark - Delegates and Page Control
 
 - (void)pageControlChanged:(id)sender {
-	if (sender == pageControl) {
-		CGSize scrSize = buttonScroll.frame.size;
-		CGRect scrRect = CGRectMake(pageControl.currentPage*scrSize.width, 0, scrSize.width, scrSize.height);
-		[buttonScroll scrollRectToVisible:scrRect animated:YES];
+	if (sender == _pageControl) {
+		CGSize scrSize = _buttonScroll.frame.size;
+		CGRect scrRect = CGRectMake(_pageControl.currentPage*scrSize.width, 0, scrSize.width, scrSize.height);
+		[_buttonScroll scrollRectToVisible:scrRect animated:YES];
 	}
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-	if (pageControl) {
-		pageControl.currentPage = scrollView.contentOffset.x / scrollView.frame.size.width;
+	if (_pageControl) {
+		_pageControl.currentPage = scrollView.contentOffset.x / scrollView.frame.size.width;
 	}
+}
+
+#pragma mark - draw shadow / radial gradient
+
+-(void)drawRect:(CGRect)rect
+{
+	if (!_shouldDrawShadow) return;
+	
+	CGContextRef c = UIGraphicsGetCurrentContext();
+	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+	
+	CGFloat colors[] = {
+		0.1176f, 0.2235f, 0.3098f, 0.9f, // r30 g57 b79
+		0.0f, 0.0f, 0.0f, 0.4f,
+		0.0f, 0.0f, 0.0f, 0.0f
+	};
+	CGFloat locations[3] = {
+		0.0f, 0.3f, 1.0f
+	};
+	CGGradientRef radGradient = CGGradientCreateWithColorComponents(rgb, colors, locations, 3);
+	CGColorSpaceRelease(rgb);
+	
+	CGContextDrawRadialGradient(c, radGradient,
+								CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect)), 
+								MAX(CGRectGetWidth(rect), CGRectGetHeight(rect)), 
+								CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect)), 
+								0, 0);
+	
+	CGGradientRelease(radGradient);
 }
 
 @end
 
 
 
-#pragma mark - ##############################################
-
-
+// ################################################################
+// #
+// #  ActionButton (data-holder)
+// #
+// ################################################################
 
 #pragma mark - ActionButton Object
 
@@ -264,7 +339,11 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 }
 @end
 
-
+// ################################################################
+// #
+// #  ActionChooserButton (the real clickable button)
+// #
+// ################################################################
 
 #pragma mark - ActionChooserButton
 
@@ -289,7 +368,11 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 }
 @end
 
-
+// ################################################################
+// #
+// #  Close Button (the b/w X on the top left corner)
+// #
+// ################################################################
 
 #pragma mark - Close-Button
 
@@ -336,6 +419,11 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 @end
 
 
+// ################################################################
+// #
+// #  Alert Sheet Background (the blue background)
+// #
+// ################################################################
 
 #pragma mark - Alert Sheet Background
 
@@ -345,6 +433,31 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 #define OGEdgePadding 6.0f
 #define OGEdgeButtomPad 9.0f
 #define OGLineWidth 2.0f
+
+@synthesize fillColor = _fillColor;
+
+-(void)dealloc {
+	[_fillColor release];
+	[super dealloc];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.fillColor = [UIColor colorWithRed:17/255.0 green:25/255.0 blue:68/255.0 alpha:0.8];
+    }
+    return self;
+}
+
+-(void)setFillColor:(UIColor *)fillColor
+{
+	if (fillColor != _fillColor) {
+		[_fillColor release];
+		_fillColor = [fillColor retain];
+		[self setNeedsDisplay];
+	}
+}
 
 - (void)drawRect:(CGRect)rect {
 	float width = rect.size.width;
@@ -370,8 +483,6 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 	CGPathAddQuadCurveToPoint(glass, NULL, width/2, heigth/6, 0, heigth/12);
 	CGPathAddLineToPoint(glass, NULL, 0, 0);
 	
-	
-	
 	CGContextRef c = UIGraphicsGetCurrentContext();
 	
 	CGContextSaveGState(c);
@@ -379,7 +490,7 @@ ActionIndexPath actionIndexPathMake(char page, char column, char row) {
 	
 	CGContextSetLineWidth(c, OGLineWidth);
 	CGContextSetStrokeColorWithColor(c, [[UIColor colorWithWhite:0.8f alpha:1.0] CGColor]);
-	CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:17/255.0 green:25/255.0 blue:68/255.0 alpha:0.8] CGColor]);
+	CGContextSetFillColorWithColor(c, [_fillColor CGColor]);
 	
 	CGContextBeginTransparencyLayer (c, NULL);
 	CGContextAddPath(c, path);
